@@ -1,0 +1,4 @@
+./collect/tracee-mock.sh ./collect/input1-py.json \
+  | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego \
+  | ./detect/tracee-opa-filter.sh ./detect/root.rego \
+  | ./act/notify-teams.sh

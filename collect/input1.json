@@ -1,0 +1,3 @@
+{"time":63048,"pid":1891,"tid":1891,"ppid":1578,"uid":1000,"mnt_ns":4026531840,"pid_ns":4026531836,"process_name":"zsh","uts_name":"ubuntu","arguments_count":2,"return_value":0,"api":"execve","arguments":["/usr/bin/ls",["ls"]]}
+{"time":63058,"pid":1896,"tid":1896,"ppid":1578,"uid":1000,"mnt_ns":4026531840,"pid_ns":4026531836,"process_name":"zsh","uts_name":"ubuntu","arguments_count":2,"return_value":0,"api":"execve","arguments":["/usr/bin/bash",["bash"]]}
+{"time":63058,"pid":1897,"tid":1897,"ppid":1896,"uid":1000,"mnt_ns":4026531840,"pid_ns":4026531836,"process_name":"bash","uts_name":"ubuntu","arguments_count":2,"return_value":0,"api":"execve","arguments":["/usr/bin/dirname",["dirname","/home/itaysk/.asdf/asdf.sh"]]}
