@@ -1,10 +1,8 @@
 ./collect/tracee-mock.sh ./collect/input1-py.json \
-  | ./detect/stateless/tracee-opa-filter.sh ./detect/stateless/exec-bash.rego \
-  | ./detect/stateless/tracee-opa-filter.sh ./detect/stateless/root.rego \
+  | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego \
+  | ./detect/tracee-opa-filter.sh ./detect/root.rego \
   | ./act/notify-teams.sh
 
 
-  stateful
-
   ./collect/tracee-mock.sh ./collect/input1-py.json \
-  | ./detect/stateful-reg/tracee-opa-sm.sh ./detect/stateful-reg/four-exec-bash.rego
+  | ./detect/tracee-opa-sm.sh ./detect/four-exec-bash.rego
