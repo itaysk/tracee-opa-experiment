@@ -1,6 +1,6 @@
-Tracee - OPA integration
+Tracee - OPA experiment
 
-Demonstration of using Open Policy Agent as a rule engine over Tracee log stream. This is merely a POC of why OPA can be useful in such use case. This is not a usable project in real world, and definitely not a product.
+Experimentation of using Open Policy Agent as a rule engine over Tracee log stream. This is merely a POC, or even a demo of why OPA can be useful to process events. This is not a usable project in real world, and definitely not a product.
 
 ## Concepts
 The demo is built on a classical model of collect->detect->act.
