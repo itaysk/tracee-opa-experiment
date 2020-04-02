@@ -1,8 +1,12 @@
-./collect/tracee-mock.sh ./collect/input1-py.json \
+./collect/tracee-mock.sh ./collect/input1.json \
+  | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego
+
+./collect/tracee-mock.sh ./collect/input1.json \
   | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego \
   | ./detect/tracee-opa-filter.sh ./detect/root.rego \
-  | ./act/notify-teams.sh
+  >(./act/notify-teams.sh) \
+  >(cat -)
 
 
-  ./collect/tracee-mock.sh ./collect/input1-py.json \
+  $TRACEE -o json -e execve \
   | ./detect/tracee-opa-sm.sh ./detect/four-exec-bash.rego
