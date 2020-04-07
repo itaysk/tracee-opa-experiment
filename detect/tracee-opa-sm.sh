@@ -7,6 +7,12 @@ state_path="./state/$state_id"
 mkdir -p "$state_path"
 state_file="$state_path/state.json"
 
+function finish {
+  exec 3>&-
+  rm "$state_file" && rm -r "$state_path"
+}
+
+trap finish EXIT
 rm "$state_file" &>/dev/null; mkfifo "$state_file"
 exec 3<>"$state_file"
 echo '{}' > "$state_file" &
@@ -22,5 +28,3 @@ while read -r line; do
   | tee >&3 \
       >(jq 'select(.state.detected == true)')
 done 3>$state_file </dev/stdin 
-
-exec 3>&-
