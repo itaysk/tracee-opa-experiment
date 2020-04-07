@@ -11,10 +11,10 @@ rm "$state_file" &>/dev/null; mkfifo "$state_file"
 exec 3<>"$state_file"
 echo '{}' > "$state_file" &
 while read -r line; do
-  read -r state <"$state_file"
+  read -r state <"$state_file" #TODO: why can't give $state_file directly here?
   opa eval \
     --format bindings --fail \
-    --data <(echo $state) \ #TODO: why can't give $state_file directly here?
+    --data <(echo $state) \
     --data "$rego" \
     'state = data.example' \
     --stdin-input <<< "$line" \
