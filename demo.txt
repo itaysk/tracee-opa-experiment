@@ -1,4 +1,4 @@
-$TRACEE -o json -e execve
+sudo $TRACEE -o json -e execve
 
 ./collect/tracee-mock.sh ./collect/input1.json \
   | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego
