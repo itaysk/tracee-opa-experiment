@@ -27,4 +27,4 @@ while read -r line; do
   | jq '.' -cM \
   | tee >&3 \
       >(jq 'select(.state.detected == true)')
-done 3>$state_file </dev/stdin 
+done
