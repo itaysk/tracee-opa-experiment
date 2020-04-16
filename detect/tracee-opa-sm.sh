@@ -2,7 +2,7 @@
 
 rego="$1"
 [ -f "$rego" ] || exit 1
-export state='{}'
+state='{}'
 while read -r line; do
   state=$(opa eval \
     --format bindings --fail \
