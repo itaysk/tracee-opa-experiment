@@ -2,29 +2,15 @@
 
 rego="$1"
 [ -f "$rego" ] || exit 1
-state_id="$(basename "$0" .sh)_$RANDOM"
-state_path="./state/$state_id"
-mkdir -p "$state_path"
-state_file="$state_path/state.json"
-
-function finish {
-  exec 3>&-
-  rm "$state_file" && rm -r "$state_path"
-}
-
-trap finish EXIT
-rm "$state_file" &>/dev/null; mkfifo "$state_file"
-exec 3<>"$state_file"
-echo '{}' > "$state_file" &
+export state='{}'
 while read -r line; do
-  read -r state <"$state_file" #TODO: why can't give $state_file directly here?
-  opa eval \
+  state=$(opa eval \
     --format bindings --fail \
     --data <(echo $state) \
     --data "$rego" \
     'state = data.example' \
     --stdin-input <<< "$line" \
-  | jq '.' -cM \
-  | tee >&3 \
-      >(jq 'select(.state.detected == true)')
+    | jq '.' -cM)
+  echo "$state"
+  jq 'select(.state.detected == true)' <<<"$state"
 done
