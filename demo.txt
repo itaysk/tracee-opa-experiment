@@ -1,14 +1,11 @@
-sudo $TRACEE -o json -e execve
+$TRACEE | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego
 
-./collect/tracee-mock.sh ./collect/input1.json \
-  | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego
-
-./collect/tracee-mock.sh ./collect/input1.json \
+$TRACEE \
   | ./detect/tracee-opa-filter.sh ./detect/exec-bash.rego \
   | ./detect/tracee-opa-filter.sh ./detect/root.rego \
   >(./act/notify-teams.sh) \
   >(cat -)
 
 
-./collect/tracee-mock.sh ./collect/input1.json \
+$TRACEE \
   | tee >(./detect/tracee-opa-sm.sh ./detect/four-exec-bash.rego) >&2
