@@ -8,4 +8,4 @@ while read -r line; do
     -H "Content-Type: application/json" \
     -d "{\"text\": \" Tracee alert: <pre> $safeline </pre>\" }" \
     -s > /dev/null
-done </dev/stdin
+done
